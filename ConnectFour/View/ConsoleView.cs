@@ -78,11 +78,22 @@ namespace ConnectFour.View
         //
         //Displays the main menu to the screen
         //
-        public void DisplayMainMenu()
+        public char DisplayMainMenu()
         {
-            List<string> options = new List<string> { "Connect 4", " ", "1) Start Game", "2) Exit" };
+            string input;
+            char result;
 
+            List<string> options = new List<string> { "Connect 4", " ", "1) Start Game", "2) Exit" };
             _consoleMenu.DrawMenu(19, 16, options);
+
+            while (true)
+            {
+                input = Char.ToString(Console.ReadKey(true).KeyChar);
+
+                if (char.TryParse(input, out result)) break;
+            }
+
+            return result;
         }
     }
 }
