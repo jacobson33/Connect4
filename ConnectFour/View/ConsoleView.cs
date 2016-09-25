@@ -74,9 +74,10 @@ namespace ConnectFour
 
         }
 
-        public void DisplayGameArea()
+        public void DisplayGameArea(Gameboard _gameboard)
         {
-
+            Console.Clear();
+            _consoleMenu.DrawGrid(1, 1, 60, 20, 6, 7);
         }
 
         //
@@ -91,7 +92,7 @@ namespace ConnectFour
 
         public void DisplayExitMessage()
         {
-            string endm = "Bye.";
+            string endm = "Thanks for playing!";
 
             _consoleMenu.DrawTextBox(endm, true);
         }

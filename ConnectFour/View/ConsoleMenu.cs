@@ -149,6 +149,21 @@ namespace ConnectFour
             ChangeColors(_foreColor, _backColor);
         }
 
+        public void DrawGrid(int x, int y, int w, int h, int rowNum, int colNum)
+        {
+            List<char> walls = new List<char>() { '█', '═', '║', '╩', '╦', '╠', '╣', '╔', '╗', '╚', '╝', '╬' };
+
+            DrawRectangle(x, y, w, h);
+
+            int row_interval = h / rowNum;
+            int col_interval = w / colNum;
+
+            for (int i = h; i > 0; i -= row_interval) DrawLine(x+1, y+i, w-1, true, '═');
+            for (int i = w; i > 0; i -= col_interval) DrawLine(x+i, y+1, h-1, false, '║');
+
+            Console.ReadKey(true);
+        }
+
         /// <summary>
         /// Draw a menu from a list
         /// </summary>

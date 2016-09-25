@@ -74,7 +74,7 @@ namespace ConnectFour
                     //do stuff
                     ManageGameStateTasks();
                     //update game board
-                    //_gameboard.UpdateGameboardState();
+                    _gameboard.UpdateGameboardState();
                 }
 
                 //handle round complete - display score screen
@@ -89,7 +89,7 @@ namespace ConnectFour
             if (_gameView.CurrentViewState == ConsoleView.ViewState.Active)
             {
                 //display game area
-                _gameView.DisplayGameArea();
+                _gameView.DisplayGameArea(_gameboard);
 
                 //check round state
                 switch (_gameboard.CurrentRoundState)
