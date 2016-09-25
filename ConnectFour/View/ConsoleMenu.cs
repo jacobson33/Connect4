@@ -56,7 +56,10 @@ namespace ConnectFour
 
         public ConsoleMenu()
         {
-
+            Console.CursorVisible = false;
+            Console.ForegroundColor = ConsoleColor.White;
+            _foreColor = ConsoleColor.White;
+            _backColor = ConsoleColor.Black;
         }
 
         public ConsoleMenu(int w, int h) : this()

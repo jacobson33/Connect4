@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,7 +42,7 @@ namespace ConnectFour
             _playerDraws = 0;
 
             //initialize game board
-           // _gameboard.InitializeGameboard();
+            _gameboard.InitializeGameboard();
         }
 
         public void PlayGame()
@@ -58,10 +59,12 @@ namespace ConnectFour
                 switch (_gameView.PromptChar())
                 {
                     case '1':
-
+                        _playingRound = true;
                         break;
                     case '2':
-
+                        _gameView.DisplayExitMessage();
+                        Thread.Sleep(2000);
+                        Environment.Exit(0);
                         break;
                 }
 

@@ -79,12 +79,16 @@ namespace ConnectFour
         //
         public void DisplayMainMenu()
         {
-            string input;
-            char result;
-
             List<string> options = new List<string> { "Connect 4: Main Menu", " ", "1) Start Game", "2) Exit" };
 
             _consoleMenu.DrawMenu(25, 16, options);
+        }
+
+        public void DisplayExitMessage()
+        {
+            string endm = "Bye.";
+
+            _consoleMenu.DrawTextBox(endm, true);
         }
 
         /// <summary>
