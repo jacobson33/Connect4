@@ -46,6 +46,7 @@ namespace ConnectFour.Controller
         {
             //display welcome screen
 
+
             //game loop
             while (_playingGame)
             {

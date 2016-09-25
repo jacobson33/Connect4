@@ -19,6 +19,9 @@ namespace ConnectFour.View
         private Gameboard _gameboard;
         private ViewState _currentViewState;
 
+        private int _WIDTH = 120;
+        private int _HEIGHT = 40;
+
         public ViewState CurrentViewState
         {
             get { return _currentViewState; }
@@ -39,12 +42,12 @@ namespace ConnectFour.View
 
         public void InitializeConsole()
         {
-            Console.WindowWidth = 120;
-            Console.WindowHeight = 40;
-            Console.BufferWidth = 120;
-            Console.BufferHeight = 40;
+            Console.WindowWidth = _WIDTH;
+            Console.WindowHeight = _HEIGHT;
+            Console.BufferWidth = _WIDTH;
+            Console.BufferHeight = _HEIGHT;
 
-            _consoleMenu = new ConsoleMenu(120, 40);
+            _consoleMenu = new ConsoleMenu(_WIDTH, _HEIGHT);
         }
 
         //menu items
