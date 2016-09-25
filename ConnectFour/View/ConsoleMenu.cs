@@ -149,19 +149,49 @@ namespace ConnectFour
             ChangeColors(_foreColor, _backColor);
         }
 
-        public void DrawGrid(int x, int y, int w, int h, int rowNum, int colNum)
+        //public void DrawGrid(int x, int y, int w, int h, int rowNum, int colNum)
+        //{
+        //    List<char> walls = new List<char>() { '█', '═', '║', '╩', '╦', '╠', '╣', '╔', '╗', '╚', '╝', '╬' };
+
+        //    DrawRectangle(x, y, w, h);
+
+        //    int row_interval = h / rowNum;
+        //    int col_interval = w / colNum;
+
+        //    for (int i = h; i > 0; i -= row_interval) DrawLine(x+1, y+i, w-1, true, '═');
+        //    for (int j = w; j > 0; j -= col_interval) DrawLine(x+j, y+1, h-1, false, '║');
+
+        //    Console.ReadKey(true);
+        //}
+
+        public void DrawGrid(int x, int y)
         {
-            List<char> walls = new List<char>() { '█', '═', '║', '╩', '╦', '╠', '╣', '╔', '╗', '╚', '╝', '╬' };
+            string[] game_grid = new string[] { @"╔═══╦═══╦═══╦═══╦═══╦═══╦═══╗",
+                                                @"║   ║   ║   ║   ║   ║   ║   ║",
+                                                @"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
+                                                @"║   ║   ║   ║   ║   ║   ║   ║",
+                                                @"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
+                                                @"║   ║   ║   ║   ║   ║   ║   ║",
+                                                @"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
+                                                @"║   ║   ║   ║   ║   ║   ║   ║",
+                                                @"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
+                                                @"║   ║   ║   ║   ║   ║   ║   ║",
+                                                @"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
+                                                @"║   ║   ║   ║   ║   ║   ║   ║",
+                                                @"╚═══╩═══╩═══╩═══╩═══╩═══╩═══╝"};
+            int i = 0;
+            foreach (string s in game_grid)
+            {
+                WriteAt(x, y + i, s);
+                i++;
+            }
+        }
 
-            DrawRectangle(x, y, w, h);
+        public void DrawPlayerPieces()
+        {
+            char c = '█';
 
-            int row_interval = h / rowNum;
-            int col_interval = w / colNum;
 
-            for (int i = h; i > 0; i -= row_interval) DrawLine(x+1, y+i, w-1, true, '═');
-            for (int i = w; i > 0; i -= col_interval) DrawLine(x+i, y+1, h-1, false, '║');
-
-            Console.ReadKey(true);
         }
 
         /// <summary>
