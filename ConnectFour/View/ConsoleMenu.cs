@@ -8,6 +8,48 @@ namespace ConnectFour.View
 {
     public class ConsoleMenu
     {
+        #region FIELD
+
+        private string _name;
+        private int _WIDTH;
+        private int _HEIGHT;
+        private ConsoleColor _foreColor;
+        private ConsoleColor _backColor;
+
+        #endregion
+
+        #region PROPERTY
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public int WIDTH
+        {
+            get { return _WIDTH; }
+        }
+
+        public int HEIGHT
+        {
+            get { return _HEIGHT; }
+        }
+
+        public ConsoleColor ForegroundColor
+        {
+            get { return _foreColor; }
+            set { _foreColor = value; }
+        }
+
+        public ConsoleColor BackgroundColor
+        {
+            get { return _backColor; }
+            set { _backColor = value; }
+        }
+
+        #endregion
+
         #region DRAW
 
         /// <summary>
@@ -192,6 +234,59 @@ namespace ConnectFour.View
             Console.CursorVisible = true;
         }
 
+        #endregion
+
+        #region OTHER
+
+        /// <summary>
+        /// Change Front and Back color of console
+        /// </summary>
+        /// <param name="fColor"></param>
+        /// <param name="bColor"></param>
+        public void ChangeColors(ConsoleColor fColor, ConsoleColor bColor)
+        {
+            Console.ForegroundColor = fColor;
+            Console.BackgroundColor = bColor;
+        }
+
+        /// <summary>
+        /// Write Single Character
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="c"></param>
+        public void WriteAt(int x, int y, char c)
+        {
+            Console.SetCursorPosition(x, y);
+            Console.Write(c);
+        }
+
+        /// <summary>
+        /// Write Full sentence
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="s"></param>
+        public void WriteAt(int x, int y, string s)
+        {
+            Console.SetCursorPosition(x, y);
+            Console.Write(@s);
+        }
+
+        /// <summary>
+        /// Makes the first letter Upper, while making the other lower
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public string Title(string s)
+        {
+            s = s.ToLower();
+
+            char[] a = s.ToCharArray();
+            a[0] = char.ToUpper(a[0]);
+
+            return new string(a);
+        }
         #endregion
     }
 }
