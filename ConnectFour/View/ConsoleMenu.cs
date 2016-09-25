@@ -187,11 +187,16 @@ namespace ConnectFour
             }
         }
 
-        public void DrawPlayerPieces()
+        public void DrawPlayerPieces(int x, int y, Gameboard _gameBoard)
         {
             char c = '█';
 
+            foreach (Gameboard.PlayerColor p in _gameBoard.PositionState)
+            {
 
+            }
+
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         /// <summary>
