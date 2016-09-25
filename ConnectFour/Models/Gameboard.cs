@@ -30,6 +30,7 @@ namespace ConnectFour
         #region Fields
         private const int MAX_ROWS = 6;
         private const int MAX_COLS = 7;
+        private const int WIN_CONDITION = 4;
 
         private PlayerColor[,] _positionState;
         private GameboardState _currentRoundState;
@@ -116,9 +117,78 @@ namespace ConnectFour
 
         public bool FourInARow(PlayerColor playerColorToCheck)
         {
-            //check for 4 pieces in a row
+            int piecesInARow;
 
+            //Check Horizontal Lines
+            for (int row = 0; row < MAX_ROWS; row++)
+            {
+                //reset pieces for each row
+                piecesInARow = 0;
 
+                for (int col = 0; col < MAX_COLS; col++)
+                {
+                    if (_positionState[row,col] == playerColorToCheck)
+                        piecesInARow++;
+
+                    if (piecesInARow >= WIN_CONDITION)
+                        return true;
+                }
+            }
+
+            //Check Vertical Lines
+            for (int col = 0; col < MAX_COLS; col++)
+            {
+                //reset pieces for each column
+                piecesInARow = 0;
+
+                for (int row = 0; row < MAX_ROWS; row++)
+                {
+                    if (_positionState[row, col] == playerColorToCheck)
+                        piecesInARow++;
+
+                    if (piecesInARow >= WIN_CONDITION)
+                        return true;
+                }
+            }
+
+            //Check Left Diagonal Lines
+            //Only check positions that wouldn't check positions outside of _positionState bounds
+            for (int row = 0; row <= (MAX_ROWS - WIN_CONDITION); row++)
+            {
+                for (int col = 0; col >= (WIN_CONDITION - 1) && col < MAX_COLS; col++)
+                {
+                    if (_positionState[row, col] == playerColorToCheck)
+                    {
+                        //check diagonal (down/left) if this piece is match
+                        if (_positionState[row + 1, col - 1] == playerColorToCheck &&
+                            _positionState[row + 2, col - 2] == playerColorToCheck &&
+                            _positionState[row + 3, col - 3] == playerColorToCheck)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+            }
+
+            //Check Right Diagonal Lines
+            //Only check positions that wouldn't check positions outside of _positionState bounds
+            for (int row = 0; row <= (MAX_ROWS - WIN_CONDITION); row++)
+            {
+                for (int col = 0; col <= (WIN_CONDITION - 1); col++)
+                {
+                    if (_positionState[row, col] == playerColorToCheck)
+                    {
+                        //check diagonal (down/right) if this piece is match
+                        if (_positionState[row + 1, col + 1] == playerColorToCheck &&
+                            _positionState[row + 2, col + 2] == playerColorToCheck &&
+                            _positionState[row + 3, col + 3] == playerColorToCheck)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
 
             return false;
         }
