@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConnectFour.Models;
 
-namespace ConnectFour.View
+namespace ConnectFour
 {
     public class ConsoleView
     {
@@ -80,9 +79,9 @@ namespace ConnectFour.View
         //
         public void DisplayMainMenu()
         {
-            List<string> options = new List<string> { "Connect 4", " ", "1) Start Game", "2) Exit" };
+            List<string> options = new List<string> { "Connect 4: Main Menu", " ", "1) Start Game", "2) Exit" };
 
-            _consoleMenu.DrawMenu(19, 16, options);
+            _consoleMenu.DrawMenu(25, 16, options);
         }
     }
 }

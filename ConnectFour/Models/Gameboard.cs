@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConnectFour.Models
+namespace ConnectFour
 {
     public class Gameboard
     {
+        #region Enums
         public enum PlayerColor
         {
             None,
@@ -24,13 +25,17 @@ namespace ConnectFour.Models
             PlayerTwoWin,
             PlayerDraw
         }
+        #endregion  
 
+        #region Fields
         private const int MAX_ROWS = 6;
         private const int MAX_COLS = 7;
 
         private PlayerColor[,] _positionState;
         private GameboardState _currentRoundState;
+        #endregion
 
+        #region Properties
         public int MaxRows
         {
             get { return MAX_ROWS; }
@@ -49,14 +54,18 @@ namespace ConnectFour.Models
             get { return _currentRoundState; }
             set { _currentRoundState = value; }
         }
+        #endregion
 
+        #region Constructors
         public Gameboard()
         {
-            _positionState = new PlayerColor[MAX_COLS, MAX_ROWS];
+            _positionState = new PlayerColor[MAX_ROWS, MAX_COLS];
+
             InitializeGameboard();
         }
+        #endregion
 
-
+        #region Methods
         public void InitializeGameboard()
         {
             _currentRoundState = GameboardState.NewRound;
@@ -133,5 +142,6 @@ namespace ConnectFour.Models
             else
                 _currentRoundState = GameboardState.PlayerOneTurn;
         }
+        #endregion
     }
 }

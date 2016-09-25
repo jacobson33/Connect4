@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConnectFour.View
+namespace ConnectFour
 {
     public class ConsoleMenu
     {

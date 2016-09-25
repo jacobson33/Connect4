@@ -3,30 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConnectFour.Models;
-using ConnectFour.View;
 
-namespace ConnectFour.Controller
+namespace ConnectFour
 {
     public class GameController
     {
+        #region Fields
         private bool _playingGame;
         private bool _playingRound;
         private int _roundNumber;
-
         private int _playerOneWins;
         private int _playerTwoWins;
         private int _playerDraws;
 
         private static Gameboard _gameboard = new Gameboard();
         private static ConsoleView _gameView = new ConsoleView(_gameboard);
+        #endregion
 
+        #region Constructors
         public GameController()
         {
             InitializeGame();
             PlayGame();
         }
+        #endregion
 
+        #region Methods
         public void InitializeGame()
         {
             // set variables
@@ -39,26 +41,26 @@ namespace ConnectFour.Controller
             _playerDraws = 0;
 
             //initialize game board
-            _gameboard.InitializeGameboard();
+           // _gameboard.InitializeGameboard();
         }
 
         public void PlayGame()
         {
             //display welcome screen
-
+            _gameView.DisplayMainMenu();
 
             //game loop
             while (_playingGame)
             {
                 //display main menu
-                _gameView.DisplayMainMenu();
+                //_gameView.DisplayMainMenu();
 
                 while (_playingRound)
                 {
                     //do stuff
                     ManageGameStateTasks();
                     //update game board
-                    _gameboard.UpdateGameboardState();
+                    //_gameboard.UpdateGameboardState();
                 }
 
                 //handle round complete - display score screen
@@ -111,11 +113,11 @@ namespace ConnectFour.Controller
                 }
             }
         }
-
+   
 
         private void ManagePlayerTurn(Gameboard.PlayerColor playerColor)
         {
-            GameboardPosition gameboardPosition = _gameView.GetPlayerPositionChoice();
+            //GameboardPosition gameboardPosition = _gameView.GetPlayerPositionChoice();
             /*
             if (_gameboard.GameboardPositionAvailable(gameboardPosition))
                    _gameboard.SetPlayerPiece(gameboardPosition, playerColor);
@@ -123,6 +125,7 @@ namespace ConnectFour.Controller
                    _gameView.DisplayGamePositionChoiceNotAvailableScreen();
             */
         }
+        #endregion
     }
 }
 
