@@ -1,4 +1,14 @@
-#region DRAW
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConnectFour.View
+{
+    public class ConsoleMenu
+    {
+        #region DRAW
 
         /// <summary>
         /// Draw a single character
@@ -33,7 +43,7 @@
                 for (int i = 0; i < l; i++)
                     WriteAt(x, y + i, c);
         }
-        
+
         /// <summary>
         /// Draw a rectangle
         /// </summary>
@@ -76,7 +86,7 @@
 
             ChangeColors(_foreColor, _backColor);
         }
-        
+
         /// <summary>
         /// Draw a menu from a list
         /// </summary>
@@ -183,3 +193,5 @@
         }
 
         #endregion
+    }
+}

@@ -49,8 +49,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\ConsoleConfig.cs" />
+    <Compile Include="View\ConsoleMenu.cs" />
     <Compile Include="View\ConsoleView.cs" />
-    <Compile Include="View\menu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
