@@ -53,7 +53,18 @@ namespace ConnectFour
             while (_playingGame)
             {
                 //display main menu
-                //_gameView.DisplayMainMenu();
+                _gameView.DisplayMainMenu();
+
+                switch (_gameView.PromptChar())
+                {
+                    case '1':
+
+                        break;
+                    case '2':
+
+                        break;
+                }
+
 
                 while (_playingRound)
                 {
