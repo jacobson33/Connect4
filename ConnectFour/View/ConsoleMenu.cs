@@ -63,11 +63,6 @@ namespace ConnectFour.View
         {
             _WIDTH = w;
             _HEIGHT = h;
-
-            Console.WindowWidth = _WIDTH;
-            Console.WindowHeight = _HEIGHT;
-            Console.BufferWidth = _WIDTH;
-            Console.BufferHeight = _HEIGHT;
         }
 
         #endregion

@@ -50,7 +50,7 @@ namespace ConnectFour.Controller
             while (_playingGame)
             {
                 //display main menu
-
+                _gameView.DisplayMainMenu();
 
                 while (_playingRound)
                 {

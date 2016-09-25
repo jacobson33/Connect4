@@ -39,7 +39,12 @@ namespace ConnectFour.View
 
         public void InitializeConsole()
         {
+            Console.WindowWidth = 120;
+            Console.WindowHeight = 40;
+            Console.BufferWidth = 120;
+            Console.BufferHeight = 40;
 
+            _consoleMenu = new ConsoleMenu(120, 40);
         }
 
         //menu items
@@ -72,9 +77,8 @@ namespace ConnectFour.View
         //
         public void DisplayMainMenu()
         {
-            List<string> options = new List<string> { "Delirium", " ", "1) Start Game", "2) Exit" };
+            List<string> options = new List<string> { "Connect 4", " ", "1) Start Game", "2) Exit" };
 
-            _consoleMenu = new ConsoleMenu(120, 40);
             _consoleMenu.DrawMenu(19, 16, options);
         }
     }
