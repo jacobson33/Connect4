@@ -119,16 +119,16 @@ namespace ConnectFour
             h--;
 
             //Making the corners
-            WriteAt(x, y, '/');
-            WriteAt(x + w, y, '\\');
-            WriteAt(x, y + h, '\\');
-            WriteAt(x + w, y + h, '/');
+            WriteAt(x, y, '╔');
+            WriteAt(x + w, y, '╗');
+            WriteAt(x, y + h, '╚');
+            WriteAt(x + w, y + h, '╝');
 
             //Make the sides
-            DrawLine(x + 1, y, w, true, '-');
-            DrawLine(x + 1, y + h, w, true, '-');
-            DrawLine(x, y + 1, h, false, '|');
-            DrawLine(x + w, y + 1, h, false, '|');
+            DrawLine(x + 1, y, w, true, '═');
+            DrawLine(x + 1, y + h, w, true, '═');
+            DrawLine(x, y + 1, h, false, '║');
+            DrawLine(x + w, y + 1, h, false, '║');
         }
 
         /// <summary>

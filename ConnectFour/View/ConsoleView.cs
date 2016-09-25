@@ -74,6 +74,11 @@ namespace ConnectFour
 
         }
 
+        public void DisplayGameArea()
+        {
+
+        }
+
         //
         //Displays the main menu to the screen
         //
