@@ -29,11 +29,13 @@ namespace ConnectFour.View
         public int WIDTH
         {
             get { return _WIDTH; }
+            set { _WIDTH = value; }
         }
 
         public int HEIGHT
         {
             get { return _HEIGHT; }
+            set { _HEIGHT = value; }
         }
 
         public ConsoleColor ForegroundColor
@@ -50,6 +52,26 @@ namespace ConnectFour.View
 
         #endregion
 
+        #region CONSTRUCTOR
+
+        public ConsoleMenu()
+        {
+
+        }
+
+        public ConsoleMenu(int w, int h) : this()
+        {
+            _WIDTH = w;
+            _HEIGHT = h;
+
+            Console.WindowWidth = _WIDTH;
+            Console.WindowHeight = _HEIGHT;
+            Console.BufferWidth = _WIDTH;
+            Console.BufferHeight = _HEIGHT;
+        }
+
+        #endregion
+
         #region DRAW
 
         /// <summary>
@@ -60,7 +82,7 @@ namespace ConnectFour.View
         /// <param name="ct">char</param>
         /// <param name="fColor"></param>
         /// <param name="bColor"></param>
-        protected void DrawChar(int x, int y, char ct, ConsoleColor fColor, ConsoleColor bColor)
+        public void DrawChar(int x, int y, char ct, ConsoleColor fColor, ConsoleColor bColor)
         {
             ChangeColors(fColor, bColor);
 
@@ -72,7 +94,7 @@ namespace ConnectFour.View
         /// <summary>
         /// Draw Lines
         /// </summary>
-        protected void DrawLine(int x, int y, int l, bool dir, char c)
+        public void DrawLine(int x, int y, int l, bool dir, char c)
         {
             Console.SetCursorPosition(x, y);
 
@@ -93,7 +115,7 @@ namespace ConnectFour.View
         /// <param name="y"></param>
         /// <param name="w"></param>
         /// <param name="h"></param>
-        protected void DrawRectangle(int x, int y, int w, int h)
+        public void DrawRectangle(int x, int y, int w, int h)
         {
             w--;
             h--;
@@ -120,7 +142,7 @@ namespace ConnectFour.View
         /// <param name="h"></param>
         /// <param name="fColor"></param>
         /// <param name="bColor"></param>
-        protected void DrawRectangle(int x, int y, int w, int h, ConsoleColor fColor, ConsoleColor bColor)
+        public void DrawRectangle(int x, int y, int w, int h, ConsoleColor fColor, ConsoleColor bColor)
         {
             ChangeColors(fColor, bColor);
 
@@ -137,10 +159,29 @@ namespace ConnectFour.View
         /// <param name="w"></param>
         /// <param name="h"></param>
         /// <param name="menu"></param>
-        protected void DrawMenu(int x, int y, int w, int h, List<string> menu)
+        public void DrawMenu(int x, int y, int w, int h, List<string> menu)
         {
             Console.Clear();
             int i = 2;
+
+            DrawRectangle(x, y, w, h);
+
+            foreach (string s in menu)
+            {
+                Console.SetCursorPosition(x + 2, y + i);
+                Console.Write(s);
+
+                i += 2;
+            }
+        }
+
+        public void DrawMenu(int w, int h, List<string> menu)
+        {
+            Console.Clear();
+            int i = 2;
+
+            int x = _WIDTH / 2 - 7;
+            int y = _HEIGHT / 2 - 8;
 
             DrawRectangle(x, y, w, h);
 
@@ -163,7 +204,7 @@ namespace ConnectFour.View
         /// <param name="fColor"></param>
         /// <param name="bColor"></param>
         /// <param name="menu"></param>
-        protected void DrawMenu(int x, int y, int w, int h, ConsoleColor fColor, ConsoleColor bColor, List<string> menu)
+        public void DrawMenu(int x, int y, int w, int h, ConsoleColor fColor, ConsoleColor bColor, List<string> menu)
         {
             ChangeColors(fColor, bColor);
 
@@ -180,7 +221,7 @@ namespace ConnectFour.View
         /// <param name="w"></param>
         /// <param name="h"></param>
         /// <param name="s"></param>
-        protected void DrawTextBox(int x, int y, int w, int h, string s)
+        public void DrawTextBox(int x, int y, int w, int h, string s)
         {
             DrawRectangle(x, y, w, h);
 
@@ -192,7 +233,7 @@ namespace ConnectFour.View
         /// Simpler DrawTextBox override
         /// </summary>
         /// <param name="s"></param>
-        protected void DrawTextBox(string s)
+        public void DrawTextBox(string s)
         {
             int w = s.Length + 8;
             int h = 5;
@@ -207,7 +248,7 @@ namespace ConnectFour.View
         /// </summary>
         /// <param name="s"></param>
         /// <param name="v"></param>
-        protected void DrawTextBox(string s, bool v)
+        public void DrawTextBox(string s, bool v)
         {
             if (v) Console.Clear();
 
@@ -217,7 +258,7 @@ namespace ConnectFour.View
         /// <summary>
         /// Draw a specialized text box
         /// </summary>
-        protected void DrawPromptBox(string s)
+        public void DrawPromptBox(string s)
         {
             Console.Clear();
 

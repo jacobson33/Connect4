@@ -14,6 +14,8 @@ namespace ConnectFour.View
         private const int GAMEBOARD_VERTICAL_LOCATION = 4;
         private const int GAMEBOARD_VERTICAL_CURSOR = 3;
 
+        private ConsoleMenu _consoleMenu;
+
         private Gameboard _gameboard;
         private ViewState _currentViewState;
 
@@ -63,6 +65,17 @@ namespace ConnectFour.View
 
             return gameboardPosition;
 
+        }
+
+        //
+        //Displays the main menu to the screen
+        //
+        public void DisplayMainMenu()
+        {
+            List<string> options = new List<string> { "Delirium", " ", "1) Start Game", "2) Exit" };
+
+            _consoleMenu = new ConsoleMenu(120, 40);
+            _consoleMenu.DrawMenu(19, 16, options);
         }
     }
 }
