@@ -67,6 +67,9 @@ namespace ConnectFour
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Initialize gameboard, set all positions to None
+        /// </summary>
         public void InitializeGameboard()
         {
             _currentRoundState = GameboardState.NewRound;
@@ -81,6 +84,11 @@ namespace ConnectFour
             }
         }
 
+        /// <summary>
+        /// Check if a position is available on the gameboard
+        /// </summary>
+        /// <param name="column">Column to check</param>
+        /// <returns>bool</returns>
         public bool GameboardPositionAvailable(int column)
         {
             //check each row in the column, starting from the top
@@ -93,6 +101,9 @@ namespace ConnectFour
             return false;
         }
 
+        /// <summary>
+        /// Update gameboard status if a win/draw occurs
+        /// </summary>
         public void UpdateGameboardState()
         {
             //check for win conditions
@@ -104,6 +115,10 @@ namespace ConnectFour
                 _currentRoundState = GameboardState.PlayerDraw;
         }
 
+        /// <summary>
+        /// Check for tie game
+        /// </summary>
+        /// <returns>bool</returns>
         public bool IsDrawGame()
         {
             for (int row = 0; row < MAX_ROWS; row++)
@@ -115,6 +130,11 @@ namespace ConnectFour
             return true;
         }
 
+        /// <summary>
+        /// Check game for win condition
+        /// </summary>
+        /// <param name="playerColorToCheck">Player to check</param>
+        /// <returns>bool</returns>
         public bool FourInARow(PlayerColor playerColorToCheck)
         {
             int piecesInARow;
@@ -196,6 +216,11 @@ namespace ConnectFour
             return false;
         }
 
+        /// <summary>
+        /// Place player piece on gameboard
+        /// </summary>
+        /// <param name="column">Column selected by user</param>
+        /// <param name="playerColor">Current player color</param>
         public void SetPlayerPiece(int column, PlayerColor playerColor)
         {
             //check game board from bottom row and insert player color into first open position
@@ -211,6 +236,9 @@ namespace ConnectFour
             SetNextPlayer();
         }
 
+        /// <summary>
+        /// Update game to be next player's turn
+        /// </summary>
         private void SetNextPlayer()
         {
             if (_currentRoundState == GameboardState.PlayerOneTurn)
