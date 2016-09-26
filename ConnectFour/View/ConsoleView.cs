@@ -77,7 +77,8 @@ namespace ConnectFour
         public void DisplayGameArea(Gameboard _gameboard)
         {
             Console.Clear();
-            _consoleMenu.DrawGrid(1, 1);
+            _consoleMenu.DrawGrid(_WIDTH / 2 - 14, _HEIGHT / 2 - 7);
+            _consoleMenu.DrawPlayerPieces(_WIDTH / 2 - 14, _HEIGHT / 2 - 7, _gameboard);
         }
 
         //

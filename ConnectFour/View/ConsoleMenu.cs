@@ -190,11 +190,39 @@ namespace ConnectFour
         public void DrawPlayerPieces(int x, int y, Gameboard _gameBoard)
         {
             char c = '█';
+            Gameboard.PlayerColor color;
+            ConsoleColor fColor = ConsoleColor.Black;
+            ConsoleColor bColor = ConsoleColor.Black;
 
-            foreach (Gameboard.PlayerColor p in _gameBoard.PositionState)
+            for (int row = 0; row < _gameBoard.MaxRows; row++)
             {
+                for (int col = 0; col < _gameBoard.MaxCols; col++)
+                {
+                    //TEMP CODE TO POPULATE GRID WITH PLAYER PIECES
+                    if (row % 2 == 0 && col % 2 == 0) { _gameBoard.PositionState[row, col] = Gameboard.PlayerColor.Blue; }
+                    else { _gameBoard.PositionState[row, col] = Gameboard.PlayerColor.Red; }
 
+                    color = _gameBoard.PositionState[row, col];
+
+                    switch (color)
+                    {
+                        case Gameboard.PlayerColor.None:
+                            fColor = ConsoleColor.Black;
+                            break;
+                        case Gameboard.PlayerColor.Red:
+                            fColor = ConsoleColor.Red;
+                            break;
+                        case Gameboard.PlayerColor.Blue:
+                            fColor = ConsoleColor.Blue;
+                            break;
+                    }
+
+                    //draw piece
+                    DrawChar((x+2)+(4*col), (y+1)+(2*row), c, fColor, bColor);
+                }
             }
+
+            Console.ReadKey();
 
             Console.ForegroundColor = ConsoleColor.White;
         }
