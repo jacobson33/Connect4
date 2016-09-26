@@ -258,8 +258,7 @@ namespace ConnectFour
 
             foreach (string s in menu)
             {
-                Console.SetCursorPosition(x + 2, y + i);
-                Console.Write(s);
+                WriteAt(x+2, y+i, s);
 
                 i += 2;
             }
@@ -267,21 +266,11 @@ namespace ConnectFour
 
         public void DrawMenu(int w, int h, List<string> menu)
         {
-            Console.Clear();
-            int i = 2;
-
             int x = _WIDTH / 2 - 7;
             int y = _HEIGHT / 2 - 8;
 
             DrawRectangle(x, y, w, h);
-
-            foreach (string s in menu)
-            {
-                Console.SetCursorPosition(x + 2, y + i);
-                Console.Write(s);
-
-                i += 2;
-            }
+            DrawMenu(x, y, w, h, menu);
         }
 
         /// <summary>
@@ -314,9 +303,7 @@ namespace ConnectFour
         public void DrawTextBox(int x, int y, int w, int h, string s)
         {
             DrawRectangle(x, y, w, h);
-
-            Console.SetCursorPosition(x + w / 8, y + h / 2);
-            Console.Write(s);
+            WriteAt(x + w / 8, y + h / 2, s);
         }
 
         /// <summary>
@@ -358,9 +345,8 @@ namespace ConnectFour
             int y = _HEIGHT / 2 - h / 2;
 
             DrawRectangle(x, y, w, h);
+            WriteAt(x + w / 8, y + 2, s);
 
-            Console.SetCursorPosition(x + w / 8, y + 2);
-            Console.Write(s);
             Console.SetCursorPosition(x + w / 8, y + 4);
             Console.CursorVisible = true;
         }
