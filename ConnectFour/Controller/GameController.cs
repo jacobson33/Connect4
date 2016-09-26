@@ -60,6 +60,7 @@ namespace ConnectFour
                 {
                     case '1':
                         _playingRound = true;
+                        _gameboard.InitializeGameboard();
                         break;
                     case '2':
                         _gameView.DisplayExitMessage();

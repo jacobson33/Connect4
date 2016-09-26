@@ -99,6 +99,30 @@ namespace ConnectFour
             _consoleMenu.DrawTextBox(endm, true);
         }
 
+        public void DisplayWinner(Gameboard.PlayerColor winner)
+        {
+            string message = "";
+
+            switch (winner)
+            {
+                case Gameboard.PlayerColor.None:
+                    //draw game message
+                    message = "Tie Game!";
+                    break;
+                case Gameboard.PlayerColor.Red:
+                    //player one wins message
+                    message = "Player One Wins!";
+                    break;
+                case Gameboard.PlayerColor.Blue:
+                    //player two wins message
+                    message = "Player Two Wins!";
+                    break;
+            }
+            message += " Press any key to continue.";
+            _consoleMenu.DrawTextBox(message, true);
+            Console.ReadKey();
+        }
+
         /// <summary>
         /// Prompt for a char
         /// </summary>

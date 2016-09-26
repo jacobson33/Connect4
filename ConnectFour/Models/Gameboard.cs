@@ -155,7 +155,7 @@ namespace ConnectFour
             //Only check positions that wouldn't check positions outside of _positionState bounds
             for (int row = 0; row <= (MAX_ROWS - WIN_CONDITION); row++)
             {
-                for (int col = 0; col >= (WIN_CONDITION - 1) && col < MAX_COLS; col++)
+                for (int col = (WIN_CONDITION - 1); col < MAX_COLS; col++)
                 {
                     if (_positionState[row, col] == playerColorToCheck)
                     {
@@ -168,7 +168,6 @@ namespace ConnectFour
                         }
                     }
                 }
-
             }
 
             //Check Right Diagonal Lines
@@ -189,7 +188,7 @@ namespace ConnectFour
                     }
                 }
             }
-
+            //return false if none of win conditions have returned true
             return false;
         }
 

@@ -325,7 +325,7 @@ namespace ConnectFour
         /// <param name="s"></param>
         public void DrawTextBox(string s)
         {
-            int w = s.Length + 8;
+            int w = s.Length + 12;
             int h = 5;
             int x = _WIDTH / 2 - w / 2;
             int y = _HEIGHT / 2 - h / 2;
