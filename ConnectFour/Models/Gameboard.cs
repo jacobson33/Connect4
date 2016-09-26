@@ -127,8 +127,10 @@ namespace ConnectFour
 
                 for (int col = 0; col < MAX_COLS; col++)
                 {
-                    if (_positionState[row,col] == playerColorToCheck)
+                    if (_positionState[row, col] == playerColorToCheck)
                         piecesInARow++;
+                    else
+                        piecesInARow = 0;
 
                     if (piecesInARow >= WIN_CONDITION)
                         return true;
@@ -145,6 +147,8 @@ namespace ConnectFour
                 {
                     if (_positionState[row, col] == playerColorToCheck)
                         piecesInARow++;
+                    else
+                        piecesInARow = 0;
 
                     if (piecesInARow >= WIN_CONDITION)
                         return true;
