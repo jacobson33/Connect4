@@ -198,12 +198,7 @@ namespace ConnectFour
             {
                 for (int col = 0; col < _gameBoard.MaxCols; col++)
                 {
-                    //TEMP CODE TO POPULATE GRID WITH PLAYER PIECES
-                    if (row % 2 == 0 && col % 2 == 0) { _gameBoard.PositionState[row, col] = Gameboard.PlayerColor.Blue; }
-                    else { _gameBoard.PositionState[row, col] = Gameboard.PlayerColor.Red; }
-
                     color = _gameBoard.PositionState[row, col];
-
                     switch (color)
                     {
                         case Gameboard.PlayerColor.None:
@@ -216,14 +211,33 @@ namespace ConnectFour
                             fColor = ConsoleColor.Blue;
                             break;
                     }
-
                     //draw piece
                     DrawChar((x+2)+(4*col), (y+1)+(2*row), c, fColor, bColor);
                 }
             }
+            Console.ForegroundColor = ConsoleColor.White;
+        }
 
-            Console.ReadKey();
-
+        public void DrawCursor(int x, int y, Gameboard _gameBoard, int column)
+        {
+            char c = '█';
+            ConsoleColor fColor = ConsoleColor.Black;
+            ConsoleColor bColor = ConsoleColor.Black;
+            
+            switch (_gameBoard.CurrentRoundState)
+            {
+                case Gameboard.GameboardState.PlayerOneTurn:
+                    fColor = ConsoleColor.Red;
+                    break;
+                case Gameboard.GameboardState.PlayerTwoTurn:
+                    fColor = ConsoleColor.Blue;
+                    break;
+                default:
+                    fColor = ConsoleColor.Yellow;
+                    break;
+            }
+            //draw piece
+            DrawChar((x + 2) + (4 * column), y - 2, c, fColor, bColor);
             Console.ForegroundColor = ConsoleColor.White;
         }
 

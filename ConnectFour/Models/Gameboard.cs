@@ -199,7 +199,10 @@ namespace ConnectFour
             for (int row = MAX_ROWS - 1; row >= 0; row--)
             {
                 if (_positionState[row, column] == PlayerColor.None)
+                {
                     _positionState[row, column] = playerColor;
+                    break;
+                }
             }
             //change player
             SetNextPlayer();

@@ -74,11 +74,12 @@ namespace ConnectFour
 
         }
 
-        public void DisplayGameArea(Gameboard _gameboard)
+        public void DisplayGameArea(Gameboard _gameboard, int column = 0)
         {
             Console.Clear();
             _consoleMenu.DrawGrid(_WIDTH / 2 - 14, _HEIGHT / 2 - 7);
             _consoleMenu.DrawPlayerPieces(_WIDTH / 2 - 14, _HEIGHT / 2 - 7, _gameboard);
+            _consoleMenu.DrawCursor(_WIDTH / 2 - 14, _HEIGHT / 2 - 7, _gameboard, column);
         }
 
         //

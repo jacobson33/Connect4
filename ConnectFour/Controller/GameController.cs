@@ -48,7 +48,7 @@ namespace ConnectFour
         public void PlayGame()
         {
             //display welcome screen
-            _gameView.DisplayMainMenu();
+            //_gameView.DisplayMainMenu();
 
             //game loop
             while (_playingGame)
@@ -73,6 +73,7 @@ namespace ConnectFour
                 {
                     //do stuff
                     ManageGameStateTasks();
+
                     //update game board
                     _gameboard.UpdateGameboardState();
                 }
@@ -109,16 +110,19 @@ namespace ConnectFour
 
                     case Gameboard.GameboardState.PlayerOneWin:
                         _playerOneWins++;
+                        _gameView.DisplayWinner(Gameboard.PlayerColor.Red);
                         _playingRound = false;
                         break;
 
                     case Gameboard.GameboardState.PlayerTwoWin:
                         _playerTwoWins++;
+                        _gameView.DisplayWinner(Gameboard.PlayerColor.Blue);
                         _playingRound = false;
                         break;
 
                     case Gameboard.GameboardState.PlayerDraw:
                         _playerDraws++;
+                        _gameView.DisplayWinner(Gameboard.PlayerColor.None);
                         _playingRound = false;
                         break;
 
@@ -131,13 +135,33 @@ namespace ConnectFour
 
         private void ManagePlayerTurn(Gameboard.PlayerColor playerColor)
         {
-            //GameboardPosition gameboardPosition = _gameView.GetPlayerPositionChoice();
-            /*
-            if (_gameboard.GameboardPositionAvailable(gameboardPosition))
-                   _gameboard.SetPlayerPiece(gameboardPosition, playerColor);
-                else
-                   _gameView.DisplayGamePositionChoiceNotAvailableScreen();
-            */
+            int column = 0;
+            bool validChoice = false;
+
+            while (!validChoice)
+            {
+                string key = Console.ReadKey().Key.ToString().ToUpper();
+                switch (key)
+                {
+                    case "LEFTARROW":
+                        column--;
+                        column = column < 0 ? _gameboard.MaxCols - 1 : column;
+                        break;
+                    case "RIGHTARROW":
+                        column++;
+                        column = column > _gameboard.MaxCols - 1 ? 0 : column;
+                        break;
+                    case "SPACEBAR":
+                        //attempt to place piece in selected column
+                        if (_gameboard.GameboardPositionAvailable(column))
+                        {
+                            validChoice = true;
+                            _gameboard.SetPlayerPiece(column, playerColor);
+                        }
+                        break;
+                }
+                _gameView.DisplayGameArea(_gameboard, column);
+            }
         }
         #endregion
     }
