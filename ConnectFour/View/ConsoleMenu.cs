@@ -190,30 +190,13 @@ namespace ConnectFour
                 for (int xI = x + cellWidth + 1; xI <= x + w - cellWidth - 1; xI += cellWidth + 1)
                     WriteAt(xI, yI, '╬');
         }
-        
-        //public void DrawGrid(int x, int y)
-        //{
-        //    string[] game_grid = new string[] { "╔═══╦═══╦═══╦═══╦═══╦═══╦═══╗",
-        //                                        "║   ║   ║   ║   ║   ║   ║   ║",
-        //                                        "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
-        //                                        "║   ║   ║   ║   ║   ║   ║   ║",
-        //                                        "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
-        //                                        "║   ║   ║   ║   ║   ║   ║   ║",
-        //                                        "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
-        //                                        "║   ║   ║   ║   ║   ║   ║   ║",
-        //                                        "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
-        //                                        "║   ║   ║   ║   ║   ║   ║   ║",
-        //                                        "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
-        //                                        "║   ║   ║   ║   ║   ║   ║   ║",
-        //                                        "╚═══╩═══╩═══╩═══╩═══╩═══╩═══╝"};
-        //    int i = 0;
-        //    foreach (string s in game_grid)
-        //    {
-        //        WriteAt(x, y + i, s);
-        //        i++;
-        //    }
-        //}
 
+        /// <summary>
+        /// Draws the player pieces
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="_gameBoard"></param>
         public void DrawPlayerPieces(int x, int y, Gameboard _gameBoard)
         {
             char c = '█';
