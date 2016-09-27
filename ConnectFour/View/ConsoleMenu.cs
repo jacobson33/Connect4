@@ -149,43 +149,70 @@ namespace ConnectFour
             ChangeColors(_foreColor, _backColor);
         }
 
-        //public void DrawGrid(int x, int y, int w, int h, int rowNum, int colNum)
-        //{
-        //    List<char> walls = new List<char>() { '█', '═', '║', '╩', '╦', '╠', '╣', '╔', '╗', '╚', '╝', '╬' };
-
-        //    DrawRectangle(x, y, w, h);
-
-        //    int row_interval = h / rowNum;
-        //    int col_interval = w / colNum;
-
-        //    for (int i = h; i > 0; i -= row_interval) DrawLine(x+1, y+i, w-1, true, '═');
-        //    for (int j = w; j > 0; j -= col_interval) DrawLine(x+j, y+1, h-1, false, '║');
-
-        //    Console.ReadKey(true);
-        //}
-
-        public void DrawGrid(int x, int y)
+        /// <summary>
+        /// Creates a grid
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="rowNum"></param>
+        /// <param name="colNum"></param>
+        /// <param name="cellWidth"></param>
+        /// <param name="cellHeight"></param>
+        public void DrawGrid(int x, int y, int rowNum, int colNum, int cellWidth, int cellHeight)
         {
-            string[] game_grid = new string[] { "╔═══╦═══╦═══╦═══╦═══╦═══╦═══╗",
-                                                "║   ║   ║   ║   ║   ║   ║   ║",
-                                                "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
-                                                "║   ║   ║   ║   ║   ║   ║   ║",
-                                                "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
-                                                "║   ║   ║   ║   ║   ║   ║   ║",
-                                                "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
-                                                "║   ║   ║   ║   ║   ║   ║   ║",
-                                                "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
-                                                "║   ║   ║   ║   ║   ║   ║   ║",
-                                                "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
-                                                "║   ║   ║   ║   ║   ║   ║   ║",
-                                                "╚═══╩═══╩═══╩═══╩═══╩═══╩═══╝"};
-            int i = 0;
-            foreach (string s in game_grid)
-            {
-                WriteAt(x, y + i, s);
-                i++;
-            }
+            //█, ═, ║, ╩, ╦, ╠, ╣, ╔, ╗, ╚, ╝, ╬
+
+            if (rowNum <= 0) rowNum++;
+            if (colNum <= 0) colNum++;
+            if (cellWidth <= 0) cellWidth++;
+            if (cellHeight <= 0) cellHeight++;
+
+            int w = (colNum * cellWidth) + colNum + 1;
+            int h = (rowNum * cellHeight) + rowNum + 1;
+
+            DrawRectangle(x, y, w, h);
+
+            //Draw Main Lines: ═ & ║
+            for (int xI = x + cellWidth + 1; xI <= x + w - cellWidth - 1; xI += cellWidth + 1) DrawLine(xI, y + 1, h - 1, false, '║');
+            for (int yI = y + cellHeight + 1; yI <= y + h - cellHeight - 1; yI += cellHeight + 1) DrawLine(x + 1, yI, w - 1, true, '═');
+
+            //Draw Top & Bottom Juntions: ╦ & ╩
+            for (int xI = x + cellWidth + 1; xI <= x + w - cellWidth - 1; xI += cellWidth + 1) WriteAt(xI, y, '╦');
+            for (int xI = x + cellWidth + 1; xI <= x + w - cellWidth - 1; xI += cellWidth + 1) WriteAt(xI, y + h - 1, '╩');
+
+            //Draw Left & Right Juntions: ╠ & ╣
+            for (int yI = y + cellHeight + 1; yI <= y + h - cellHeight - 1; yI += cellHeight + 1) WriteAt(x, yI, '╠');
+            for (int yI = y + cellHeight + 1; yI <= y + h - cellHeight - 1; yI += cellHeight + 1) WriteAt(x + w - 1, yI, '╣');
+
+            //Draw Inner Juntions: ╬
+            for (int yI = y + cellHeight + 1; yI <= y + h - cellHeight - 1; yI += cellHeight + 1)
+                for (int xI = x + cellWidth + 1; xI <= x + w - cellWidth - 1; xI += cellWidth + 1)
+                    WriteAt(xI, yI, '╬');
+
         }
+        
+        //public void DrawGrid(int x, int y)
+        //{
+        //    string[] game_grid = new string[] { "╔═══╦═══╦═══╦═══╦═══╦═══╦═══╗",
+        //                                        "║   ║   ║   ║   ║   ║   ║   ║",
+        //                                        "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
+        //                                        "║   ║   ║   ║   ║   ║   ║   ║",
+        //                                        "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
+        //                                        "║   ║   ║   ║   ║   ║   ║   ║",
+        //                                        "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
+        //                                        "║   ║   ║   ║   ║   ║   ║   ║",
+        //                                        "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
+        //                                        "║   ║   ║   ║   ║   ║   ║   ║",
+        //                                        "╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣",
+        //                                        "║   ║   ║   ║   ║   ║   ║   ║",
+        //                                        "╚═══╩═══╩═══╩═══╩═══╩═══╩═══╝"};
+        //    int i = 0;
+        //    foreach (string s in game_grid)
+        //    {
+        //        WriteAt(x, y + i, s);
+        //        i++;
+        //    }
+        //}
 
         public void DrawPlayerPieces(int x, int y, Gameboard _gameBoard)
         {

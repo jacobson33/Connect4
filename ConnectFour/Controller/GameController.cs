@@ -141,7 +141,7 @@ namespace ConnectFour
 
             while (!validChoice)
             {
-                string key = Console.ReadKey().Key.ToString().ToUpper();
+                string key = Console.ReadKey(true).Key.ToString().ToUpper();
                 switch (key)
                 {
                     case "LEFTARROW":
