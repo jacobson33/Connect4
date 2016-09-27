@@ -92,13 +92,13 @@ namespace ConnectFour
         /// <summary>
         /// Draw Lines
         /// </summary>
-        public void DrawLine(int x, int y, int l, bool dir, char c)
+        public void DrawLine(int x, int y, int l, bool horizontal, char c)
         {
             Console.SetCursorPosition(x, y);
 
             l--;
 
-            if (dir) //Horizontal
+            if (horizontal) //Horizontal
                 for (int i = 0; i < l; i++)
                     WriteAt(x + i, y, c);
             else    //Vertical
@@ -152,12 +152,12 @@ namespace ConnectFour
         /// <summary>
         /// Creates a grid
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="rowNum"></param>
-        /// <param name="colNum"></param>
-        /// <param name="cellWidth"></param>
-        /// <param name="cellHeight"></param>
+        /// <param name="x">X position</param>
+        /// <param name="y">Y positions</param>
+        /// <param name="rowNum">Number of Rows</param>
+        /// <param name="colNum">Number of Columns</param>
+        /// <param name="cellWidth">Cell's Width</param>
+        /// <param name="cellHeight">Cell's Height</param>
         public void DrawGrid(int x, int y, int rowNum, int colNum, int cellWidth, int cellHeight)
         {
             //█, ═, ║, ╩, ╦, ╠, ╣, ╔, ╗, ╚, ╝, ╬
@@ -170,6 +170,7 @@ namespace ConnectFour
             int w = (colNum * cellWidth) + colNum + 1;
             int h = (rowNum * cellHeight) + rowNum + 1;
 
+            //Draw frame
             DrawRectangle(x, y, w, h);
 
             //Draw Main Lines: ═ & ║
@@ -188,7 +189,6 @@ namespace ConnectFour
             for (int yI = y + cellHeight + 1; yI <= y + h - cellHeight - 1; yI += cellHeight + 1)
                 for (int xI = x + cellWidth + 1; xI <= x + w - cellWidth - 1; xI += cellWidth + 1)
                     WriteAt(xI, yI, '╬');
-
         }
         
         //public void DrawGrid(int x, int y)
