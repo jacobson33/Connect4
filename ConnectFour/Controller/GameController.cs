@@ -63,6 +63,8 @@ namespace ConnectFour
                         _gameboard.InitializeGameboard();
                         break;
                     case '2':
+                        break;
+                    case '3':
                         _gameView.DisplayExitMessage();
                         Thread.Sleep(2000);
                         Environment.Exit(0);

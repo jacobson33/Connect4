@@ -106,7 +106,7 @@ namespace ConnectFour
         //
         public void DisplayMainMenu()
         {
-            List<string> options = new List<string> { "Connect 4: Main Menu", " ", "1) Start Game", "2) Exit" };
+            List<string> options = new List<string> { "Connect 4: Main Menu", " ", "1) Start Game", "2) Load Game", "3) Exit" };
 
             _consoleMenu.DrawMenu(25, 16, options);
         }
