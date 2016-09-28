@@ -21,6 +21,15 @@ namespace ConnectFour
         private int _WIDTH = 120;
         private int _HEIGHT = 40;
 
+        //Grid Variables
+        private int _gridRowNum;
+        private int _gridColNum;
+        private int _gridCellWidth;
+        private int _gridCellHeight;
+        private int _gridX;
+        private int _gridY;
+
+        //Properties
         public ViewState CurrentViewState
         {
             get { return _currentViewState; }
@@ -47,6 +56,13 @@ namespace ConnectFour
             Console.BufferHeight = _HEIGHT;
 
             _consoleMenu = new ConsoleMenu(_WIDTH, _HEIGHT);
+
+            _gridRowNum = 6;
+            _gridColNum = 7;
+            _gridCellWidth = 5;
+            _gridCellHeight = 3;
+            _gridX = _WIDTH / 2 - ((_gridColNum * _gridCellWidth) + _gridColNum + 1) / 2;
+            _gridY = _HEIGHT / 2 - ((_gridRowNum * _gridCellHeight) + _gridRowNum + 1) / 2;
         }
 
         //menu items
@@ -76,10 +92,13 @@ namespace ConnectFour
 
         public void DisplayGameArea(Gameboard _gameboard, int column = 0)
         {
-            Console.Clear();
-            _consoleMenu.DrawGrid(_WIDTH / 2 - 14, _HEIGHT / 2 - 7, 6, 7, 3, 1);
-            _consoleMenu.DrawPlayerPieces(_WIDTH / 2 - 14, _HEIGHT / 2 - 7, _gameboard);
-            _consoleMenu.DrawCursor(_WIDTH / 2 - 14, _HEIGHT / 2 - 7, _gameboard, column);
+            Console.Clear();            
+            
+
+            _consoleMenu.DrawGrid(_gridX, _gridY, _gridRowNum, _gridColNum, _gridCellWidth, _gridCellHeight);
+
+            _consoleMenu.DrawPlayerPieces(_gridX, _gridY, _gridCellWidth, _gridCellHeight, _gameboard);
+            _consoleMenu.DrawCursor(_gridX, _gridY, _gridCellWidth, _gridCellHeight, column, _gameboard);
         }
 
         //

@@ -94,8 +94,6 @@ namespace ConnectFour
         /// </summary>
         public void DrawLine(int x, int y, int l, bool horizontal, char c)
         {
-            Console.SetCursorPosition(x, y);
-
             l--;
 
             if (horizontal) //Horizontal
@@ -197,11 +195,11 @@ namespace ConnectFour
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="_gameBoard"></param>
-        public void DrawPlayerPieces(int x, int y, Gameboard _gameBoard)
+        public void DrawPlayerPieces(int x, int y, int cellWidth, int cellHeight, Gameboard _gameBoard)
         {
             char c = '█';
             Gameboard.PlayerColor color;
-            ConsoleColor fColor = ConsoleColor.Black;
+            //ConsoleColor fColor = ConsoleColor.Black;
             ConsoleColor bColor = ConsoleColor.Black;
 
             for (int row = 0; row < _gameBoard.MaxRows; row++)
@@ -211,24 +209,33 @@ namespace ConnectFour
                     color = _gameBoard.PositionState[row, col];
                     switch (color)
                     {
-                        case Gameboard.PlayerColor.None:
-                            fColor = ConsoleColor.Black;
-                            break;
+                        //case Gameboard.PlayerColor.None:
+                        //    fColor = ConsoleColor.Black;
+                        //    break;
                         case Gameboard.PlayerColor.Red:
-                            fColor = ConsoleColor.Red;
+                            DrawChar((x + (cellWidth / 2) + 1) + ((cellWidth + 1) * col), (y + (cellHeight / 2) + 1) + ((cellHeight + 1) * row), c, ConsoleColor.Red, bColor);
+                            //fColor = ConsoleColor.Red;
                             break;
                         case Gameboard.PlayerColor.Blue:
-                            fColor = ConsoleColor.Blue;
+                            DrawChar((x + (cellWidth / 2) + 1) + ((cellWidth + 1) * col), (y + (cellHeight / 2) + 1) + ((cellHeight + 1) * row), c, ConsoleColor.Blue, bColor);
+                            //fColor = ConsoleColor.Blue;
                             break;
                     }
                     //draw piece
-                    DrawChar((x+2)+(4*col), (y+1)+(2*row), c, fColor, bColor);
+                    //DrawChar((x+2)+(4*col), (y+1)+(2*row), c, fColor, bColor);
                 }
             }
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public void DrawCursor(int x, int y, Gameboard _gameBoard, int column)
+        /// <summary>
+        /// Draw the selection cursor
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="_gameBoard"></param>
+        /// <param name="column"></param>
+        public void DrawCursor(int x, int y, int cellWidth, int cellHeight, int column, Gameboard _gameBoard)
         {
             char c = '█';
             ConsoleColor fColor = ConsoleColor.Black;
@@ -247,7 +254,7 @@ namespace ConnectFour
                     break;
             }
             //draw piece
-            DrawChar((x + 2) + (4 * column), y - 2, c, fColor, bColor);
+            DrawChar((x + (cellWidth / 2) + 1) + ((cellWidth + 1) * column), y - 2, c, fColor, bColor);
             Console.ForegroundColor = ConsoleColor.White;
         }
 
