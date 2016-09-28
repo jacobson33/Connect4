@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace ConnectFour
 {
@@ -63,6 +64,7 @@ namespace ConnectFour
                         _gameboard.InitializeGameboard();
                         break;
                     case '2':
+                        LoadGame();
                         break;
                     case '3':
                         _gameView.DisplayExitMessage();
@@ -135,7 +137,6 @@ namespace ConnectFour
             }
         }
    
-
         private void ManagePlayerTurn(Gameboard.PlayerColor playerColor)
         {
             int column = 0;
@@ -143,18 +144,18 @@ namespace ConnectFour
 
             while (!validChoice)
             {
-                string key = Console.ReadKey(true).Key.ToString().ToUpper();
+                ConsoleKey key = Console.ReadKey(true).Key;
                 switch (key)
                 {
-                    case "LEFTARROW":
+                    case ConsoleKey.LeftArrow:
                         column--;
                         column = column < 0 ? _gameboard.MaxCols - 1 : column;
                         break;
-                    case "RIGHTARROW":
+                    case ConsoleKey.RightArrow:
                         column++;
                         column = column > _gameboard.MaxCols - 1 ? 0 : column;
                         break;
-                    case "SPACEBAR":
+                    case ConsoleKey.Spacebar:
                         //attempt to place piece in selected column
                         if (_gameboard.GameboardPositionAvailable(column))
                         {
@@ -162,11 +163,94 @@ namespace ConnectFour
                             _gameboard.SetPlayerPiece(column, playerColor);
                         }
                         break;
+                    case ConsoleKey.Escape:
+                        SaveGame();
+                        break;
+                    case ConsoleKey.L:
+                        LoadGame();
+                        break;
                 }
                 _gameView.DisplayGameArea(_gameboard, column);
             }
         }
         #endregion
+
+        #region Save / Load
+        
+        private void SaveGame()
+        {
+            string filepath = AppDomain.CurrentDomain.BaseDirectory + "/data.txt"; //base directory of application
+            char delimeter = '|';
+
+            try
+            {
+                //Instantiate new StreamWriter
+                StreamWriter sw = new StreamWriter(filepath);
+                using (sw)
+                {
+                    for (int row = 0; row < _gameboard.MaxRows; row++)
+                    {
+                        for (int col = 0; col < _gameboard.MaxCols; col++)
+                        {
+                            //build string for each position on gameboard and write to save file
+                            string line = _gameboard.PositionState[row, col].ToString() + delimeter + row + delimeter + col;
+                            sw.WriteLine(line);
+                        }
+                    }
+                }
+            }
+             catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.ReadLine();
+            }
+
+        }
+
+        private void LoadGame()
+        {
+            string filepath = AppDomain.CurrentDomain.BaseDirectory + "/data.txt"; //base directory of application
+            char delimeter = '|';
+            List<string> saveData = new List<string>();
+
+            try
+            {
+                //Instatiate reader
+                StreamReader sr = new StreamReader(filepath);
+                using (sr)
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        saveData.Add(sr.ReadLine());
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.ReadLine();
+            }
+
+            foreach (string s in saveData)
+            {
+                string[] line = s.Split(delimeter);
+                LoadPosition(line);
+            }
+        }
+
+        private void LoadPosition(string[] line)
+        {
+            Gameboard.PlayerColor pc;
+            int row = Int32.Parse(line[1]);
+            int col = Int32.Parse(line[2]);
+
+            if (Enum.TryParse(line[0], out pc)) { }
+            else { pc = Gameboard.PlayerColor.None; }
+
+            _gameboard.PositionState[row, col] = pc;
+
+        }
+        #endregion  
     }
 }
 
