@@ -274,10 +274,16 @@ namespace ConnectFour
             }
         }
 
+        /// <summary>
+        /// Draws the menu at the center of the screen
+        /// </summary>
+        /// <param name="w"></param>
+        /// <param name="h"></param>
+        /// <param name="menu"></param>
         public void DrawMenu(int w, int h, List<string> menu)
         {
-            int x = _WIDTH / 2 - 7;
-            int y = _HEIGHT / 2 - 8;
+            int x = (_WIDTH / 2) - (w / 2);
+            int y = (_HEIGHT / 2) - (h / 2);
 
             DrawRectangle(x, y, w, h);
             DrawMenu(x, y, w, h, menu);
