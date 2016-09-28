@@ -199,7 +199,7 @@ namespace ConnectFour
         {
             char c = '█';
             Gameboard.PlayerColor color;
-            //ConsoleColor fColor = ConsoleColor.Black;
+            ConsoleColor fColor = ConsoleColor.Black;
             ConsoleColor bColor = ConsoleColor.Black;
 
             for (int row = 0; row < _gameBoard.MaxRows; row++)
@@ -213,16 +213,14 @@ namespace ConnectFour
                         //    fColor = ConsoleColor.Black;
                         //    break;
                         case Gameboard.PlayerColor.Red:
-                            DrawChar((x + (cellWidth / 2) + 1) + ((cellWidth + 1) * col), (y + (cellHeight / 2) + 1) + ((cellHeight + 1) * row), c, ConsoleColor.Red, bColor);
-                            //fColor = ConsoleColor.Red;
+                            fColor = ConsoleColor.Red;
                             break;
                         case Gameboard.PlayerColor.Blue:
-                            DrawChar((x + (cellWidth / 2) + 1) + ((cellWidth + 1) * col), (y + (cellHeight / 2) + 1) + ((cellHeight + 1) * row), c, ConsoleColor.Blue, bColor);
-                            //fColor = ConsoleColor.Blue;
+                            fColor = ConsoleColor.Blue;
                             break;
                     }
                     //draw piece
-                    //DrawChar((x+2)+(4*col), (y+1)+(2*row), c, fColor, bColor);
+                    DrawChar((x + (cellWidth / 2) + 1) + ((cellWidth + 1) * col), (y + (cellHeight / 2) + 1) + ((cellHeight + 1) * row), c, ConsoleColor.Blue, bColor);
                 }
             }
             Console.ForegroundColor = ConsoleColor.White;
