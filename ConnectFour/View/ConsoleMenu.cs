@@ -209,9 +209,9 @@ namespace ConnectFour
                     color = _gameBoard.PositionState[row, col];
                     switch (color)
                     {
-                        //case Gameboard.PlayerColor.None:
-                        //    fColor = ConsoleColor.Black;
-                        //    break;
+                        case Gameboard.PlayerColor.None:
+                            fColor = ConsoleColor.Black;
+                            break;
                         case Gameboard.PlayerColor.Red:
                             fColor = ConsoleColor.Red;
                             break;
@@ -220,7 +220,7 @@ namespace ConnectFour
                             break;
                     }
                     //draw piece
-                    DrawChar((x + (cellWidth / 2) + 1) + ((cellWidth + 1) * col), (y + (cellHeight / 2) + 1) + ((cellHeight + 1) * row), c, ConsoleColor.Blue, bColor);
+                    DrawChar((x + (cellWidth / 2) + 1) + ((cellWidth + 1) * col), (y + (cellHeight / 2) + 1) + ((cellHeight + 1) * row), c, fColor, bColor);
                 }
             }
             Console.ForegroundColor = ConsoleColor.White;
