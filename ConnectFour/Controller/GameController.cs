@@ -250,7 +250,7 @@ namespace ConnectFour
             _gameboard.PositionState[row, col] = pc;
 
         }
-        #endregion  
+        #endregion
     }
 }
 
