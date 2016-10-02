@@ -170,7 +170,7 @@ namespace ConnectFour
                         LoadGame();
                         break;
                 }
-                _gameView.DisplayGameArea(_gameboard, column);
+                _gameView.UpdateGameArea(_gameboard, column);
             }
         }
         #endregion

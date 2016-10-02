@@ -238,7 +238,10 @@ namespace ConnectFour
             char c = '█';
             ConsoleColor fColor = ConsoleColor.Black;
             ConsoleColor bColor = ConsoleColor.Black;
-            
+
+            //Clears Row
+            WriteAt(x, y - 2, new String(' ', cellWidth * 8));
+
             switch (_gameBoard.CurrentRoundState)
             {
                 case Gameboard.GameboardState.PlayerOneTurn:

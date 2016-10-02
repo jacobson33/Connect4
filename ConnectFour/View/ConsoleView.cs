@@ -101,6 +101,14 @@ namespace ConnectFour
             _consoleMenu.DrawCursor(_gridX, _gridY, _gridCellWidth, _gridCellHeight, column, _gameboard);
         }
 
+        public void UpdateGameArea(Gameboard _gameboard, int column = 0)
+        {
+            //Console.Clear();
+
+            _consoleMenu.DrawPlayerPieces(_gridX, _gridY, _gridCellWidth, _gridCellHeight, _gameboard);
+            _consoleMenu.DrawCursor(_gridX, _gridY, _gridCellWidth, _gridCellHeight, column, _gameboard);
+        }
+
         //
         //Displays the main menu to the screen
         //
