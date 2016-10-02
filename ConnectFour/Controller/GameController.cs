@@ -55,24 +55,7 @@ namespace ConnectFour
             while (_playingGame)
             {
                 //display main menu
-                _gameView.DisplayMainMenu();
-
-                switch (_gameView.PromptChar())
-                {
-                    case '1':
-                        _playingRound = true;
-                        _gameboard.InitializeGameboard();
-                        break;
-                    case '2':
-                        LoadGame();
-                        break;
-                    case '3':
-                        _gameView.DisplayExitMessage();
-                        Thread.Sleep(2000);
-                        Environment.Exit(0);
-                        break;
-                }
-
+                MainMenu();
 
                 while (_playingRound)
                 {
@@ -164,7 +147,7 @@ namespace ConnectFour
                         }
                         break;
                     case ConsoleKey.Escape:
-                        SaveGame();
+                        InGameMenu();
                         break;
                     case ConsoleKey.L:
                         LoadGame();
@@ -173,6 +156,51 @@ namespace ConnectFour
                 _gameView.UpdateGameArea(_gameboard, column);
             }
         }
+
+        private void MainMenu()
+        {
+            _gameView.DisplayMainMenu();
+
+            switch (_gameView.PromptChar())
+            {
+                case '1':
+                    _playingRound = true;
+                    _gameboard.InitializeGameboard();
+                    break;
+                case '2':
+                    LoadGame();
+                    break;
+                case '3':
+                    _gameView.DisplayExitMessage();
+                    Thread.Sleep(2000);
+                    Environment.Exit(0);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void InGameMenu()
+        {
+            _gameView.DisplaySubMenu();
+
+            switch (_gameView.PromptChar())
+            {
+                case '1':
+                    _playingRound = false;
+                    MainMenu();
+                    break;
+                case '2':
+                    SaveGame();
+                    _gameView.DisplayGameArea(_gameboard);
+                    break;
+                case '3':
+                    _gameView.DisplayGameArea(_gameboard);
+                    break;
+            }
+        }
+
         #endregion
 
         #region Save / Load
