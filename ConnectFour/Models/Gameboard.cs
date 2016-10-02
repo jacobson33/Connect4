@@ -23,8 +23,7 @@ namespace ConnectFour
             PlayerTwoTurn,
             PlayerOneWin,
             PlayerTwoWin,
-            PlayerDraw,
-            EndRound
+            PlayerDraw
         }
         #endregion  
 

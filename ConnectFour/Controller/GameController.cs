@@ -59,13 +59,11 @@ namespace ConnectFour
 
                 while (_playingRound)
                 {
-                    
                     //do stuff
                     ManageGameStateTasks();
 
                     //update game board
                     _gameboard.UpdateGameboardState();
-                    
                 }
 
                 //handle round complete - display score screen
@@ -81,6 +79,7 @@ namespace ConnectFour
             {
                 //display game area
                 _gameView.DisplayGameArea(_gameboard);
+                Console.Write(_gameboard.CurrentRoundState);
 
                 //check round state
                 switch (_gameboard.CurrentRoundState)
@@ -114,12 +113,6 @@ namespace ConnectFour
                         _playerDraws++;
                         _gameView.DisplayWinner(Gameboard.PlayerColor.None);
                         _playingRound = false;
-                        break;
-
-                    case Gameboard.GameboardState.EndRound:
-                        _playingRound = false;
-                        break;
-                    default:
                         break;
                 }
             }
@@ -158,7 +151,11 @@ namespace ConnectFour
                         LoadGame();
                         break;
                 }
-                _gameView.UpdateGameArea(_gameboard, column);
+
+                if (key != ConsoleKey.Escape)
+                    _gameView.UpdateGameArea(_gameboard, column);
+                else
+                    break;
             }
         }
 
@@ -190,8 +187,7 @@ namespace ConnectFour
             switch (_gameView.PromptChar())
             {
                 case '1':
-                    //_gameboard.CurrentRoundState = Gameboard.GameboardState.EndRound;
-                    //MainMenu();
+                    _playingRound = false;
                     break;
                 case '2':
                     SaveGame();
