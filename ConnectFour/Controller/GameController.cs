@@ -59,11 +59,13 @@ namespace ConnectFour
 
                 while (_playingRound)
                 {
+                    
                     //do stuff
                     ManageGameStateTasks();
 
                     //update game board
                     _gameboard.UpdateGameboardState();
+                    
                 }
 
                 //handle round complete - display score screen
@@ -114,6 +116,9 @@ namespace ConnectFour
                         _playingRound = false;
                         break;
 
+                    case Gameboard.GameboardState.EndRound:
+                        _playingRound = false;
+                        break;
                     default:
                         break;
                 }
@@ -177,10 +182,7 @@ namespace ConnectFour
                     break;
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
+        
         private void InGameMenu()
         {
             _gameView.DisplaySubMenu();
@@ -188,8 +190,8 @@ namespace ConnectFour
             switch (_gameView.PromptChar())
             {
                 case '1':
-                    _playingRound = false;
-                    MainMenu();
+                    //_gameboard.CurrentRoundState = Gameboard.GameboardState.EndRound;
+                    //MainMenu();
                     break;
                 case '2':
                     SaveGame();

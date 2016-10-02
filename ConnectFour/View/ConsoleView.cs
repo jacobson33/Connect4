@@ -50,6 +50,7 @@ namespace ConnectFour
 
         public void InitializeConsole()
         {
+            Console.Title = "Connect 4";
             Console.WindowWidth = _WIDTH;
             Console.WindowHeight = _HEIGHT;
             Console.BufferWidth = _WIDTH;
@@ -94,7 +95,6 @@ namespace ConnectFour
         {
             Console.Clear();            
             
-
             _consoleMenu.DrawGrid(_gridX, _gridY, _gridRowNum, _gridColNum, _gridCellWidth, _gridCellHeight);
 
             _consoleMenu.DrawPlayerPieces(_gridX, _gridY, _gridCellWidth, _gridCellHeight, _gameboard);
@@ -157,7 +157,7 @@ namespace ConnectFour
             }
             message += " Press any key to continue.";
             _consoleMenu.DrawTextBox(message, true);
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
 
         /// <summary>
