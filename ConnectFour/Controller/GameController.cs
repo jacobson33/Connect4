@@ -79,7 +79,6 @@ namespace ConnectFour
             {
                 //display game area
                 _gameView.DisplayGameArea(_gameboard);
-                Console.Write(_gameboard.CurrentRoundState);
 
                 //check round state
                 switch (_gameboard.CurrentRoundState)
@@ -152,7 +151,8 @@ namespace ConnectFour
                         break;
                 }
 
-                if (key != ConsoleKey.Escape)
+                //Check if Escape 
+                if (key != ConsoleKey.Escape && _playingRound)
                     _gameView.UpdateGameArea(_gameboard, column);
                 else
                     break;
