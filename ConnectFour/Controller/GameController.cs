@@ -195,6 +195,9 @@ namespace ConnectFour
                 case '3':
                     _gameView.DisplayGameArea(_gameboard);
                     break;
+                default:
+                    _gameView.DisplayGameArea(_gameboard);
+                    break;
             }
         }
 
