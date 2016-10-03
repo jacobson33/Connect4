@@ -147,13 +147,10 @@ namespace ConnectFour
                     case ConsoleKey.Escape:
                         InGameMenu();
                         break;
-                    //case ConsoleKey.L:
-                    //    LoadGame();
-                    //    break;
                 }
 
-                //Check if Escape 
-                if (key != ConsoleKey.Escape && _playingRound)
+                //Check if Still Playing
+                if (_playingRound)
                     _gameView.UpdateGameArea(_gameboard, column);
                 else
                     break;
