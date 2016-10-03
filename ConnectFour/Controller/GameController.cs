@@ -50,6 +50,7 @@ namespace ConnectFour
         {
             //display welcome screen
             //_gameView.DisplayMainMenu();
+            _gameView.DisplayRules();
 
             //game loop
             while (_playingGame)
@@ -146,9 +147,9 @@ namespace ConnectFour
                     case ConsoleKey.Escape:
                         InGameMenu();
                         break;
-                    case ConsoleKey.L:
-                        LoadGame();
-                        break;
+                    //case ConsoleKey.L:
+                    //    LoadGame();
+                    //    break;
                 }
 
                 //Check if Escape 
@@ -171,6 +172,7 @@ namespace ConnectFour
                     break;
                 case '2':
                     LoadGame();
+                    _playingRound = true;
                     break;
                 case '3':
                     _gameView.DisplayExitMessage();

@@ -8,7 +8,13 @@ namespace ConnectFour
 {
     public class ConsoleView
     {
+        #region ENUM
+
         public enum ViewState { None, Active }
+
+        #endregion
+
+        #region FIELD
 
         private const int GAMEBOARD_VERTICAL_LOCATION = 4;
         private const int GAMEBOARD_VERTICAL_CURSOR = 3;
@@ -29,7 +35,10 @@ namespace ConnectFour
         private int _gridX;
         private int _gridY;
 
-        //Properties
+        #endregion
+
+        #region PROPERTY
+
         public ViewState CurrentViewState
         {
             get { return _currentViewState; }
@@ -47,6 +56,10 @@ namespace ConnectFour
             _currentViewState = ViewState.Active;
             InitializeConsole();
         }
+
+        #endregion
+
+        #region CONSTRUCTOR
 
         public void InitializeConsole()
         {
@@ -66,7 +79,10 @@ namespace ConnectFour
             _gridY = _HEIGHT / 2 - ((_gridRowNum * _gridCellHeight) + _gridRowNum + 1) / 2;
         }
 
-        //menu items
+        #endregion
+
+        #region METHOD
+
         public GameboardPosition GetPlayerPositionChoice()
         {
             //
@@ -91,6 +107,11 @@ namespace ConnectFour
 
         }
 
+        /// <summary>
+        /// Draws the game board
+        /// </summary>
+        /// <param name="_gameboard"></param>
+        /// <param name="column"></param>
         public void DisplayGameArea(Gameboard _gameboard, int column = 0)
         {
             Console.Clear();            
@@ -101,17 +122,20 @@ namespace ConnectFour
             _consoleMenu.DrawCursor(_gridX, _gridY, _gridCellWidth, _gridCellHeight, column, _gameboard);
         }
 
+        /// <summary>
+        /// Update the game board
+        /// </summary>
+        /// <param name="_gameboard"></param>
+        /// <param name="column"></param>
         public void UpdateGameArea(Gameboard _gameboard, int column = 0)
         {
-            //Console.Clear();
-
             _consoleMenu.DrawPlayerPieces(_gridX, _gridY, _gridCellWidth, _gridCellHeight, _gameboard);
             _consoleMenu.DrawCursor(_gridX, _gridY, _gridCellWidth, _gridCellHeight, column, _gameboard);
         }
 
-        //
-        //Displays the main menu to the screen
-        //
+        /// <summary>
+        /// Displays the main menu to the screen
+        /// </summary>
         public void DisplayMainMenu()
         {
             List<string> options = new List<string> { "Connect 4: Main Menu", " ", "1) New Game", "2) Load Game", "3) Exit" };
@@ -127,6 +151,13 @@ namespace ConnectFour
             List<string> options = new List<string> { "Options", " ", "1) Main Menu", "2) Save Game", "3) Back" };
 
             _consoleMenu.DrawMenu(25, 16, options);
+        }
+
+        public void DisplayRules()
+        {
+            
+
+            Console.ReadKey(true);
         }
 
         public void DisplayExitMessage()
@@ -178,5 +209,7 @@ namespace ConnectFour
 
             return result;
         }
+
+        #endregion
     }
 }
