@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\GameController.cs" />
+    <Compile Include="Models\Exceptions.cs" />
     <Compile Include="Models\Gameboard.cs" />
     <Compile Include="Models\GameboardPosition.cs" />
     <Compile Include="Program.cs" />

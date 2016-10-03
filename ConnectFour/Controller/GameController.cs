@@ -195,6 +195,9 @@ namespace ConnectFour
                 case '3':
                     _gameView.DisplayGameArea(_gameboard);
                     break;
+                default:
+                    _gameView.DisplayGameArea(_gameboard);
+                    break;
             }
         }
 
@@ -259,21 +262,40 @@ namespace ConnectFour
             foreach (string s in saveData)
             {
                 string[] line = s.Split(delimeter);
-                LoadPosition(line);
+                try
+                {
+                    LoadPosition(line);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.ReadKey();
+                }
             }
         }
 
+        /// <summary>
+        /// Loads a single position of the gameboard
+        /// </summary>
+        /// <param name="line">Line in text file with Player coordinates</param>
         private void LoadPosition(string[] line)
         {
             Gameboard.PlayerColor pc;
-            int row = Int32.Parse(line[1]);
-            int col = Int32.Parse(line[2]);
 
-            if (Enum.TryParse(line[0], out pc)) { }
-            else { pc = Gameboard.PlayerColor.None; }
+            try
+            {
+                int row = Int32.Parse(line[1]);
+                int col = Int32.Parse(line[2]);
 
-            _gameboard.PositionState[row, col] = pc;
+                if (Enum.TryParse(line[0], out pc)) { }
+                else { pc = Gameboard.PlayerColor.None; }
 
+                _gameboard.PositionState[row, col] = pc;
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                throw new DataCorruptException("Data file has been corrupted. Game cannot be loaded.");
+            }
         }
         #endregion
     }
