@@ -330,6 +330,12 @@ namespace ConnectFour
             WriteAt(x + w / 8, y + h / 2, s);
         }
 
+        /// <summary>
+        /// Override of DrawTextBox(x,y,w,h,s)
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="s"></param>
         public void DrawTextBox(int x, int y, string s)
         {
             DrawTextBox(x, y, s.Length + 11, 5, s);
@@ -433,6 +439,7 @@ namespace ConnectFour
 
             return new string(a);
         }
+
         #endregion
     }
 }
