@@ -330,6 +330,11 @@ namespace ConnectFour
             WriteAt(x + w / 8, y + h / 2, s);
         }
 
+        public void DrawTextBox(int x, int y, string s)
+        {
+            DrawTextBox(x, y, s.Length + 11, 5, s);
+        }
+
         /// <summary>
         /// Simpler DrawTextBox override
         /// </summary>

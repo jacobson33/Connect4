@@ -18,6 +18,8 @@ namespace ConnectFour
         private int _playerTwoWins;
         private int _playerDraws;
 
+        private bool _error;
+
         private static Gameboard _gameboard = new Gameboard();
         private static ConsoleView _gameView = new ConsoleView(_gameboard);
         #endregion
@@ -48,8 +50,9 @@ namespace ConnectFour
 
         public void PlayGame()
         {
+            _error = false;
+
             //display welcome screen
-            //_gameView.DisplayMainMenu();
             _gameView.DisplayRules();
 
             //game loop
@@ -66,12 +69,9 @@ namespace ConnectFour
                     //update game board
                     _gameboard.UpdateGameboardState();
                 }
-
-                //handle round complete - display score screen
-
             }
-            //handle game over
 
+            _error = false;
         }
 
         public void ManageGameStateTasks()
@@ -159,7 +159,7 @@ namespace ConnectFour
 
         private void MainMenu()
         {
-            _gameView.DisplayMainMenu();
+            _gameView.DisplayMainMenu(_error);
 
             switch (_gameView.PromptChar())
             {
@@ -171,12 +171,13 @@ namespace ConnectFour
                     try
                     {
                         LoadGame();
+                        _playingRound = true;
                     }
                     catch (DataCorruptException e)
                     {
                         //show error message
+                        _error = true;
                     }
-                    _playingRound = true;
                     break;
                 case '3':
                     _gameView.DisplayExitMessage();
@@ -237,7 +238,7 @@ namespace ConnectFour
                     }
                 }
             }
-             catch (Exception e)
+            catch (Exception e)
             {
                 
             }

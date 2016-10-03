@@ -114,8 +114,8 @@ namespace ConnectFour
         /// <param name="column"></param>
         public void DisplayGameArea(Gameboard _gameboard, int column = 0)
         {
-            Console.Clear();            
-            
+            Console.Clear();
+
             _consoleMenu.DrawGrid(_gridX, _gridY, _gridRowNum, _gridColNum, _gridCellWidth, _gridCellHeight);
 
             _consoleMenu.DrawPlayerPieces(_gridX, _gridY, _gridCellWidth, _gridCellHeight, _gameboard);
@@ -136,11 +136,13 @@ namespace ConnectFour
         /// <summary>
         /// Displays the main menu to the screen
         /// </summary>
-        public void DisplayMainMenu()
+        public void DisplayMainMenu(bool error)
         {
             List<string> options = new List<string> { "Connect 4: Main Menu", " ", "1) New Game", "2) Load Game", "3) Exit" };
 
             _consoleMenu.DrawMenu(25, 16, options);
+
+            if (error) DisplayErrorMessage();
         }
 
         /// <summary>
@@ -155,14 +157,14 @@ namespace ConnectFour
 
         public void DisplayRules()
         {
-            _consoleMenu.DrawRectangle(1, 1, _WIDTH-2, _HEIGHT-2);
+            _consoleMenu.DrawRectangle(1, 1, _WIDTH - 2, _HEIGHT - 2);
 
             _consoleMenu.WriteAt(_WIDTH / 2 - 5, 1, " Connect 4 ");
 
             _consoleMenu.DrawTextBox(15, 10, 10, 5, "  ESC");
 
             _consoleMenu.DrawTextBox(75, 20, 10, 5, "   <-");
-            _consoleMenu.DrawTextBox(90, 20, 10, 5, "   ->"); 
+            _consoleMenu.DrawTextBox(90, 20, 10, 5, "   ->");
 
             _consoleMenu.DrawTextBox(15, 20, 50, 5, "\t\t      SPACE");
 
@@ -178,6 +180,11 @@ namespace ConnectFour
             string endm = "Thanks for playing!";
 
             _consoleMenu.DrawTextBox(endm, true);
+        }
+
+        public void DisplayErrorMessage()
+        {
+            _consoleMenu.DrawTextBox(48, 30, "Loading Failed");
         }
 
         public void DisplayWinner(Gameboard.PlayerColor winner)
