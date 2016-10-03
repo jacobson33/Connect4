@@ -68,10 +68,12 @@ namespace ConnectFour
                 }
 
                 //handle round complete - display score screen
-
+                
             }
             //handle game over
-
+            _gameView.DisplayExitMessage();
+            Thread.Sleep(2000);
+            Environment.Exit(0);
         }
 
         public void ManageGameStateTasks()
@@ -179,9 +181,7 @@ namespace ConnectFour
                     _playingRound = true;
                     break;
                 case '3':
-                    _gameView.DisplayExitMessage();
-                    Thread.Sleep(2000);
-                    Environment.Exit(0);
+                    _playingGame = false;
                     break;
             }
         }
