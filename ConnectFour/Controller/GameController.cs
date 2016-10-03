@@ -168,7 +168,14 @@ namespace ConnectFour
                     _gameboard.InitializeGameboard();
                     break;
                 case '2':
-                    LoadGame();
+                    try
+                    {
+                        LoadGame();
+                    }
+                    catch (DataCorruptException e)
+                    {
+                        //show error message
+                    }
                     _playingRound = true;
                     break;
                 case '3':
@@ -205,6 +212,9 @@ namespace ConnectFour
 
         #region Save / Load
         
+        /// <summary>
+        /// Save Game
+        /// </summary>
         private void SaveGame()
         {
             string filepath = AppDomain.CurrentDomain.BaseDirectory + "/data.txt"; //base directory of application
@@ -229,12 +239,14 @@ namespace ConnectFour
             }
              catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-                Console.ReadLine();
+                
             }
 
         }
 
+        /// <summary>
+        /// Load Game
+        /// </summary>
         private void LoadGame()
         {
             string filepath = AppDomain.CurrentDomain.BaseDirectory + "/data.txt"; //base directory of application
@@ -253,10 +265,9 @@ namespace ConnectFour
                     }
                 }
             }
-            catch (Exception e)
+            catch (FileNotFoundException e)
             {
-                Console.WriteLine(e.Message);
-                Console.ReadLine();
+                throw new FileNotFoundException("Save Game file is missing");
             }
 
             foreach (string s in saveData)
@@ -268,8 +279,7 @@ namespace ConnectFour
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
-                    Console.ReadKey();
+                    throw new DataCorruptException("Data file has been corrupted. Game cannot be loaded.");
                 }
             }
         }
@@ -294,7 +304,7 @@ namespace ConnectFour
             }
             catch (IndexOutOfRangeException e)
             {
-                throw new DataCorruptException("Data file has been corrupted. Game cannot be loaded.");
+                throw;
             }
         }
         #endregion
