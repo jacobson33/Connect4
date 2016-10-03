@@ -155,7 +155,20 @@ namespace ConnectFour
 
         public void DisplayRules()
         {
-            
+            _consoleMenu.DrawRectangle(1, 1, _WIDTH-2, _HEIGHT-2);
+
+            _consoleMenu.WriteAt(_WIDTH / 2 - 5, 1, " Connect 4 ");
+
+            _consoleMenu.DrawTextBox(15, 10, 10, 5, "  ESC");
+
+            _consoleMenu.DrawTextBox(75, 20, 10, 5, "   <-");
+            _consoleMenu.DrawTextBox(90, 20, 10, 5, "   ->"); 
+
+            _consoleMenu.DrawTextBox(15, 20, 50, 5, "\t\t      SPACE");
+
+            _consoleMenu.WriteAt(15, 30, "Connect 4 of your pieces to win the game!");
+
+            _consoleMenu.WriteAt(_WIDTH - 32, _HEIGHT - 3, "Press Any Key To Continue -->");
 
             Console.ReadKey(true);
         }
