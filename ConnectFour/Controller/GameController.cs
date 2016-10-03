@@ -238,7 +238,7 @@ namespace ConnectFour
                     }
                 }
             }
-            catch (Exception e)
+             catch (Exception e)
             {
                 
             }
