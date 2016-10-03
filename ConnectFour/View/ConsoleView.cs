@@ -155,6 +155,9 @@ namespace ConnectFour
             _consoleMenu.DrawMenu(25, 16, options);
         }
 
+        /// <summary>
+        /// Displays the Rule when the game is started
+        /// </summary>
         public void DisplayRules()
         {
             _consoleMenu.DrawRectangle(1, 1, _WIDTH - 2, _HEIGHT - 2);
@@ -175,6 +178,9 @@ namespace ConnectFour
             Console.ReadKey(true);
         }
 
+        /// <summary>
+        /// Displays an exit message
+        /// </summary>
         public void DisplayExitMessage()
         {
             string endm = "Thanks for playing!";
@@ -182,11 +188,18 @@ namespace ConnectFour
             _consoleMenu.DrawTextBox(endm, true);
         }
 
+        /// <summary>
+        /// Displays an Error Message to the main menu screen
+        /// </summary>
         public void DisplayErrorMessage()
         {
             _consoleMenu.DrawTextBox(48, 30, "Loading Failed");
         }
 
+        /// <summary>
+        /// Displays who the winner is
+        /// </summary>
+        /// <param name="winner"></param>
         public void DisplayWinner(Gameboard.PlayerColor winner)
         {
             string message = "";

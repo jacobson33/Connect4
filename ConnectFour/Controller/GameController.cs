@@ -33,6 +33,10 @@ namespace ConnectFour
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Init the Game
+        /// </summary>
         public void InitializeGame()
         {
             // set variables
@@ -48,6 +52,9 @@ namespace ConnectFour
             _gameboard.InitializeGameboard();
         }
 
+        /// <summary>
+        /// Main Loop
+        /// </summary>
         public void PlayGame()
         {
             _error = false;
@@ -74,6 +81,9 @@ namespace ConnectFour
             _error = false;
         }
 
+        /// <summary>
+        /// Manages the input game stats and other...
+        /// </summary>
         public void ManageGameStateTasks()
         {
             if (_gameView.CurrentViewState == ConsoleView.ViewState.Active)
@@ -118,6 +128,10 @@ namespace ConnectFour
             }
         }
    
+        /// <summary>
+        /// Manages the player's turns
+        /// </summary>
+        /// <param name="playerColor"></param>
         private void ManagePlayerTurn(Gameboard.PlayerColor playerColor)
         {
             int column = 0;
@@ -157,6 +171,9 @@ namespace ConnectFour
             }
         }
 
+        /// <summary>
+        /// Main menu choices
+        /// </summary>
         private void MainMenu()
         {
             _gameView.DisplayMainMenu(_error);
@@ -187,6 +204,9 @@ namespace ConnectFour
             }
         }
         
+        /// <summary>
+        /// Option menu choices
+        /// </summary>
         private void InGameMenu()
         {
             _gameView.DisplaySubMenu();
