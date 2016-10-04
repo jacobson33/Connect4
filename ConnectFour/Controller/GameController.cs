@@ -70,6 +70,7 @@ namespace ConnectFour
 
                 while (_playingRound)
                 {
+                    _error = false;
                     //do stuff
                     ManageGameStateTasks();
 
@@ -77,8 +78,6 @@ namespace ConnectFour
                     _gameboard.UpdateGameboardState();
                 }
             }
-
-            _error = false;
         }
 
         /// <summary>
