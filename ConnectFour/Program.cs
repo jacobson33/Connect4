@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 //
-// Auhtors: Sam Lebel & Taylor Jacobson
+// Authors: Sam Lebel & Taylor Jacobson
 //
 // Date: 4th October, 2016
 //
