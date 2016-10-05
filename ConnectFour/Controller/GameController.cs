@@ -88,13 +88,14 @@ namespace ConnectFour
             if (_gameView.CurrentViewState == ConsoleView.ViewState.Active)
             {
                 //display game area
-                _gameView.DisplayGameArea(_gameboard);
+                _gameView.UpdateGameArea(_gameboard);
 
                 //check round state
                 switch (_gameboard.CurrentRoundState)
                 {
                     case Gameboard.GameboardState.NewRound:
                         _roundNumber++;
+                        _gameView.DisplayGameArea(_gameboard);
                         _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerOneTurn;
                         break;
 
