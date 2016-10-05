@@ -327,7 +327,7 @@ namespace ConnectFour
         public void DrawTextBox(int x, int y, int w, int h, string s)
         {
             DrawRectangle(x, y, w, h);
-            WriteAt(x + w / 8, y + h / 2, s);
+            WriteAt(x + (w / 10), y + h / 2, s);
         }
 
         /// <summary>

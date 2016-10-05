@@ -136,13 +136,13 @@ namespace ConnectFour
         /// <summary>
         /// Displays the main menu to the screen
         /// </summary>
-        public void DisplayMainMenu(bool error)
+        public void DisplayMainMenu(bool error, string errorMessage)
         {
             List<string> options = new List<string> { "Connect 4: Main Menu", " ", "1) New Game", "2) Load Game", "3) Exit" };
 
             _consoleMenu.DrawMenu(25, 16, options);
 
-            if (error) DisplayErrorMessage();
+            if (error) DisplayErrorMessage(errorMessage);
         }
 
         /// <summary>
@@ -193,7 +193,24 @@ namespace ConnectFour
         /// </summary>
         public void DisplayErrorMessage()
         {
-            _consoleMenu.DrawTextBox(48, 30, "Loading Failed");
+            string message = "Loading Failed";
+            int x = 48 - (message.Length / 3);
+            _consoleMenu.DrawTextBox(x, 30, message);
+        }
+
+        /// <summary>
+        /// Displays an Error with custom message
+        /// </summary>
+        public void DisplayErrorMessage(string message)
+        {
+            int x = 48 - (message.Length / 3);
+
+            //shorten long messages
+            message = message.Length > 80 ? message.Substring(0, 75) + "..." : message;
+            x = message.Length > 80 ? x - 5 : x;
+            
+            //draw error message
+            _consoleMenu.DrawTextBox(x, 30, message);
         }
 
         /// <summary>
