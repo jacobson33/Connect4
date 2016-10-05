@@ -6,6 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+//
+// Auhtors: Sam Lebel & Taylor Jacobson
+//
+// Date: 4th October, 2016
+//
+// Project: Connect 4
+//
+
 namespace ConnectFour
 {
     public class GameController
