@@ -90,19 +90,6 @@ namespace ConnectFour
             //
             GameboardPosition gameboardPosition = new GameboardPosition(-1, -1);
 
-            //
-            // Get row number from player.
-            //
-            //gameboardPosition.Row = PlayerCoordinateChoice("Row");
-
-            //
-            // Get column number.
-            //
-            //if (CurrentViewState != ViewState.PlayerUsedMaxAttempts)
-            //{
-            //    gameboardPosition.Column = PlayerCoordinateChoice("Column");
-            //}
-
             return gameboardPosition;
 
         }

@@ -191,6 +191,7 @@ namespace ConnectFour
                     {
                         LoadGame();
                         _playingRound = true;
+                        _gameView.DisplayGameArea(_gameboard);
                     }
                     catch (DataCorruptException e)
                     {
