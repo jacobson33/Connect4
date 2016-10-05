@@ -19,6 +19,7 @@ namespace ConnectFour
         private int _playerDraws;
 
         private bool _error;
+        private string _errorMessage;
 
         private static Gameboard _gameboard = new Gameboard();
         private static ConsoleView _gameView = new ConsoleView(_gameboard);
@@ -48,6 +49,9 @@ namespace ConnectFour
             _playerTwoWins = 0;
             _playerDraws = 0;
 
+            _error = false;
+            _errorMessage = "";
+
             //initialize game board
             _gameboard.InitializeGameboard();
         }
@@ -57,8 +61,6 @@ namespace ConnectFour
         /// </summary>
         public void PlayGame()
         {
-            _error = false;
-
             //display welcome screen
             _gameView.DisplayRules();
 
@@ -176,7 +178,7 @@ namespace ConnectFour
         /// </summary>
         private void MainMenu()
         {
-            _gameView.DisplayMainMenu(_error);
+            _gameView.DisplayMainMenu(_error, _errorMessage);
 
             switch (_gameView.PromptChar())
             {
@@ -192,7 +194,16 @@ namespace ConnectFour
                     }
                     catch (DataCorruptException e)
                     {
-                        //show error message
+                        _error = true;
+                        _errorMessage = e.Message;
+                    }
+                    catch (FileNotFoundException e)
+                    {
+                        _error = true;
+                        _errorMessage = e.Message;
+                    }
+                    catch (Exception)
+                    {
                         _error = true;
                     }
                     break;
@@ -276,7 +287,7 @@ namespace ConnectFour
 
             try
             {
-                //Instatiate reader
+                //Instantiate reader
                 StreamReader sr = new StreamReader(filepath);
                 using (sr)
                 {
@@ -300,7 +311,7 @@ namespace ConnectFour
                 }
                 catch (Exception e)
                 {
-                    throw new DataCorruptException("Data file has been corrupted. Game cannot be loaded.");
+                    throw new DataCorruptException("Data file has been corrupted. Game cannot be loaded. ");
                 }
             }
         }
